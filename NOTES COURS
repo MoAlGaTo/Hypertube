@@ -1,0 +1,63 @@
+/*
+--- (lancer le server installer) ---
+php bin/console server:run
+
+--- (installer easy admin) ---
+composer require admin
+
+--- (pour creer un controller) ---
+php bin console make controller
+
+--- (pour creer la base de donneees apres l'avoir configure sur .env) ---
+php bin/console doctrine:databse:create
+
+--- (pour creer une entity -> table sql, (id creer automatiquement), cree un fichier de migration) ---
+php bin/console make:entity 'nom_de_l'entity'
+
+--- (pour appliquer la migrations et creer les tables) ---
+php bin/console make:migration
+php bin/console doctrine:migrations:migrate
+
+
+
+--- (pour faire des annotations de groupes pour les grouper les informations dans le repository) ---
+@Groups({"nomDuGroup"}) -- ou plusieurs groups -- @Groups({"nomDuGroup", "autreNomDuGroup"}) -- (=> importer la class)
+*/
+
+
+ /**
+* @ORM\Column(type="string", length=255)
+* @Assert\IsNull(
+*      message="Only ""firstname"", ""lastname"", ""pseudonym"", ""email"" and ""password"" fields must be completed.",
+*      groups={"registration"}
+* )
+*/
+private $oldPassword;
+
+
+
+public function getOldPassword(): ?string
+{
+    return $this->oldPassword;
+}
+
+public function setOldPassword(string $oldPassword): self
+{
+    $this->oldPassword = $oldPassword;
+
+    return $this;
+}
+
+
+
+    public function getOldPassword(): ?string
+    {
+        return $this->oldPassword;
+    }
+
+    public function setOldPassword(string $oldPassword): self
+    {
+        $this->oldPassword = $oldPassword;
+
+        return $this;
+    }

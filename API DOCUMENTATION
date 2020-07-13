@@ -1,0 +1,47 @@
+1- Ajout d'un User:
+
+lien: http://localhost:8080/Hypertube/public/api/user/add/info
+condition d'ajout:
+
+pour pouvoir créer un user dans la base de données, chacun des champs doivent portés les "name" suivants, et chque champs doivent etre remplis et valide:
+
+    -Pour le prénom
+    -> name="firstname"
+    -> validation: le champs ne doit pas etre vide et doit contenir entre 1 et 50 caractères et ne doit pas contenir de caractères speciaux, sinon um message d'erreur sera renvoyé.
+
+    -Pour le nom de famille
+    -> name="lastname"
+    -> validation: le champs ne doit pas etre vide et doit contenir entre 1 et 50 caractères et ne doit pas contenir de caractères speciaux, sinon um message d'erreur sera renvoyé.
+
+    -Pour le pseudonyme
+    -> name="pseudonym"
+    -> validation: le champs ne doit pas etre vide et doit contenir entre 1 et 30 caractères, sinon um message d'erreur sera renvoyé.
+
+    -Pour l'email
+    -> name="email"
+    -> validation: le champs ne doit pas etre vide et doit respecter le format email de HTML5, sinon um message d'erreur sera renvoyé.
+
+    -Pour le mot de passe
+    -> name="password"
+    -> validation: le champs ne doit pas etre vide, doit contenir entre 1 et 50 caractères et doit contenir une minuscule, une majuscule, un chiffre,
+                   ainsi qu'un caractère special(!, @, #, $, %, ^, &, *, (, ), ",", ".", ";", ?, ", :, {, }, [, ], |, <, >, \, /), sinon um message d'erreur sera renvoyé.
+                   
+
+Si tout les champs sont validés, l'ajout de l'utilisateur se fera dans la base de données et une reponse "201 CREATED" sera renvoyé ainsi qu'une réponse "location" qui donnera directement le lien pour l'ajout de l'image de l'utilisateur,
+sinon si une erreur est relevé une réponse "400 BAD REQUEST" sera renvoyé avec la ou les erreurs.
+
+--------------------------------------------------------------------------------------
+
+2- Ajout de l'image de l'utilisateur
+
+lien: http://localhost:8080/Hypertube/public/api/user/add/picture/{id}
+Ce lien est genéré automatiquement dans la reponse lors de l'ajout du user.
+condition:
+
+-Seul les images ".jpeg" et ".png" sont acceptés, et avec une taille maximale de 40mo. L'extention de l'image sera verifié ainsi que le contenu du fichier (afin de s'assurer aue c'est bien une imgage).
+Si aucune des conditions n'est acceptées, l'utilisateur récemment ajouté sera supprimé de la base de données, et un message d'erreur sera renvoyé, et l'opération d'ajout de l'utilisateur devra etre refaite.
+Sinon l'image sera bien ajouté, et l'utilisteur aura completé toute ses informations nécessaire.
+
+--------------------------------------------------------------------------------------
+
+3-
